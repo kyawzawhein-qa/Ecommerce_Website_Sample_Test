@@ -1,0 +1,24 @@
+{
+  "searchScenarios": [
+    {
+      "description": "Search with valid product term",
+      "searchTerm": "ab",
+      "expectedResult": "success"
+    },
+    {
+      "description": "Search with partial term",
+      "searchTerm": "shoe",
+      "expectedResult": "success"
+    },
+    {
+      "description": "Search with empty string",
+      "searchTerm": "",
+      "expectedResult": "error"
+    },
+    {
+      "description": "Search with non-existent product",
+      "searchTerm": "xyznonexistent123",
+      "expectedResult": "no-results"
+    }
+  ]
+}

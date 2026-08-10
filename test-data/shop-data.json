@@ -1,0 +1,22 @@
+{
+  "sortOptions": [
+    "Default sorting",
+    "Sort by popularity",
+    "Sort by average rating",
+    "Sort by latest",
+    "Sort by price: low to high",
+    "Sort by price: high to low"
+  ],
+  "paginationScenarios": [
+    {
+      "description": "Navigate to next page",
+      "action": "next",
+      "expectedResult": "success"
+    },
+    {
+      "description": "Navigate to previous page from page 2",
+      "action": "previous",
+      "expectedResult": "success"
+    }
+  ]
+}

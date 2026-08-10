@@ -1,0 +1,32 @@
+{
+  "loginScenarios": [
+    {
+      "description": "Positive: Valid credentials should grant access",
+      "email": "testuser@example.com",
+      "password": "ValidP@ssw0rd!",
+      "expectedResult": "success",
+      "expectedUrl": "/account"
+    },
+    {
+      "description": "Negative: Empty email and password fields",
+      "email": "",
+      "password": "",
+      "expectedResult": "error",
+      "expectedError": "required|empty|must"
+    },
+    {
+      "description": "Negative: Invalid email format",
+      "email": "not-an-email",
+      "password": "SomePassword123!",
+      "expectedResult": "error",
+      "expectedError": "invalid|email|format"
+    },
+    {
+      "description": "Negative: Valid email with wrong password",
+      "email": "testuser@example.com",
+      "password": "WrongPassword123!",
+      "expectedResult": "error",
+      "expectedError": "incorrect|wrong|invalid|password|failed"
+    }
+  ]
+}

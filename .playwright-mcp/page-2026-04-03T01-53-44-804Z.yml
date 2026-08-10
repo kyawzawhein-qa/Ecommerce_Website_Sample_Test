@@ -1,0 +1,353 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main"
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e6]:
+        - paragraph [ref=e7]:
+          - text: Black Friday.
+          - mark [ref=e8]: Save up to 50%
+          - text: "Deal Ends: + 4 day."
+        - generic [ref=e11] [cursor=pointer]: Shop Now
+      - generic [ref=e13]:
+        - heading "Staging shopping" [level=1] [ref=e16]:
+          - link "Staging shopping" [ref=e17] [cursor=pointer]:
+            - /url: http://staging.shopping.beeyor.com
+        - figure [ref=e20]:
+          - link [ref=e21] [cursor=pointer]:
+            - /url: "#"
+        - generic [ref=e23]:
+          - link "Login" [ref=e25] [cursor=pointer]:
+            - /url: http://staging.shopping.beeyor.com/my-account/
+            - img
+            - generic [ref=e27]: Login
+          - figure [ref=e28]:
+            - link [ref=e29] [cursor=pointer]:
+              - /url: "#"
+          - generic [ref=e30]:
+            - button "0 items in cart" [ref=e31] [cursor=pointer]:
+              - img [ref=e33]
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - paragraph:
+                          - strong: Your cart is currently empty!
+      - generic [ref=e40]:
+        - navigation [ref=e41]:
+          - list [ref=e46]:
+            - listitem [ref=e47]:
+              - link "Cart" [ref=e48] [cursor=pointer]:
+                - /url: http://staging.shopping.beeyor.com/cart/
+            - listitem [ref=e49]:
+              - link "Checkout" [ref=e50] [cursor=pointer]:
+                - /url: http://staging.shopping.beeyor.com/checkout/
+            - listitem [ref=e51]:
+              - link "My Account" [ref=e52] [cursor=pointer]:
+                - /url: http://staging.shopping.beeyor.com/my-account/
+            - listitem [ref=e53]:
+              - link "Shop" [ref=e54] [cursor=pointer]:
+                - /url: http://staging.shopping.beeyor.com/
+              - button "Shop submenu" [ref=e55] [cursor=pointer]:
+                - img [ref=e56]
+              - list [ref=e58]:
+                - listitem [ref=e59]:
+                  - link "products" [ref=e60] [cursor=pointer]:
+                    - /url: http://staging.shopping.beeyor.com/products/
+                    - generic [ref=e61]: products
+        - search [ref=e63]:
+          - generic [ref=e64]: Search
+          - generic [ref=e65]:
+            - searchbox "Search" [ref=e66]
+            - button "Search" [ref=e67] [cursor=pointer]:
+              - img [ref=e68]
+    - generic [ref=e70]:
+      - heading "Shop" [level=2] [ref=e76]
+      - main [ref=e80]:
+        - heading "Shop" [level=1] [ref=e82]
+        - paragraph [ref=e83]: Showing 1–16 of 206 results
+        - combobox "Shop order" [ref=e85]:
+          - option "Default sorting" [selected]
+          - option "Sort by popularity"
+          - option "Sort by average rating"
+          - option "Sort by latest"
+          - 'option "Sort by price: low to high"'
+          - 'option "Sort by price: high to low"'
+        - list [ref=e86]:
+          - listitem [ref=e87]:
+            - link "Front view of Richard_Montblanc Digital Paper Folio Blue Ab 250.99$" [ref=e88] [cursor=pointer]:
+              - /url: http://staging.shopping.beeyor.com/product/ab/
+              - img "Front view of Richard_Montblanc Digital Paper Folio Blue" [ref=e89]
+              - heading "Ab" [level=2] [ref=e90]
+              - generic [ref=e95]: 250.99$
+            - 'link "Add to cart: “Ab”" [ref=e98] [cursor=pointer]':
+              - /url: "?add-to-cart=548"
+              - text: Add to cart
+          - listitem [ref=e100]:
+            - link "Placeholder Abubakr 250.99$" [ref=e101] [cursor=pointer]:
+              - /url: http://staging.shopping.beeyor.com/product/abubakr/
+              - img "Placeholder" [ref=e102]
+              - heading "Abubakr" [level=2] [ref=e103]
+              - generic [ref=e108]: 250.99$
+            - 'link "Add to cart: “Abubakr”" [ref=e111] [cursor=pointer]':
+              - /url: "?add-to-cart=652"
+              - text: Add to cart
+          - listitem [ref=e113]:
+            - link "Placeholder Abubakr 250.99$" [ref=e114] [cursor=pointer]:
+              - /url: http://staging.shopping.beeyor.com/product/abubakr-2/
+              - img "Placeholder" [ref=e115]
+              - heading "Abubakr" [level=2] [ref=e116]
+              - generic [ref=e121]: 250.99$
+            - 'link "Add to cart: “Abubakr”" [ref=e124] [cursor=pointer]':
+              - /url: "?add-to-cart=654"
+              - text: Add to cart
+          - listitem [ref=e126]:
+            - link "Placeholder Add your name in the body" [ref=e127] [cursor=pointer]:
+              - /url: http://staging.shopping.beeyor.com/product/add-your-name-in-the-body/
+              - img "Placeholder" [ref=e128]
+              - heading "Add your name in the body" [level=2] [ref=e129]
+            - link "Read more about “Add your name in the body”" [ref=e130] [cursor=pointer]:
+              - /url: http://staging.shopping.beeyor.com/product/add-your-name-in-the-body/
+              - text: Read more
+          - listitem [ref=e132]:
+            - link "Placeholder Add your name in the body" [ref=e133] [cursor=pointer]:
+              - /url: http://staging.shopping.beeyor.com/product/add-your-name-in-the-body-2/
+              - img "Placeholder" [ref=e134]
+              - heading "Add your name in the body" [level=2] [ref=e135]
+            - link "Read more about “Add your name in the body”" [ref=e136] [cursor=pointer]:
+              - /url: http://staging.shopping.beeyor.com/product/add-your-name-in-the-body-2/
+              - text: Read more
+          - listitem [ref=e138]:
+            - link "Placeholder Add your name in the body" [ref=e139] [cursor=pointer]:
+              - /url: http://staging.shopping.beeyor.com/product/add-your-name-in-the-body-3/
+              - img "Placeholder" [ref=e140]
+              - heading "Add your name in the body" [level=2] [ref=e141]
+            - link "Read more about “Add your name in the body”" [ref=e142] [cursor=pointer]:
+              - /url: http://staging.shopping.beeyor.com/product/add-your-name-in-the-body-3/
+              - text: Read more
+          - listitem [ref=e144]:
+            - link "Placeholder Add your name in the body" [ref=e145] [cursor=pointer]:
+              - /url: http://staging.shopping.beeyor.com/product/add-your-name-in-the-body-4/
+              - img "Placeholder" [ref=e146]
+              - heading "Add your name in the body" [level=2] [ref=e147]
+            - link "Read more about “Add your name in the body”" [ref=e148] [cursor=pointer]:
+              - /url: http://staging.shopping.beeyor.com/product/add-your-name-in-the-body-4/
+              - text: Read more
+          - listitem [ref=e150]:
+            - link "Akbarali’s kalpak 1,000,000.00$" [ref=e151] [cursor=pointer]:
+              - /url: http://staging.shopping.beeyor.com/product/akbaralis-kalpak/
+              - heading "Akbarali’s kalpak" [level=2] [ref=e152]
+              - generic [ref=e157]: 1,000,000.00$
+            - 'link "Add to cart: “Akbarali''s kalpak”" [ref=e160] [cursor=pointer]':
+              - /url: "?add-to-cart=620"
+              - text: Add to cart
+          - listitem [ref=e162]:
+            - link "Akbarali’s kalpak 500.99$" [ref=e163] [cursor=pointer]:
+              - /url: http://staging.shopping.beeyor.com/product/akbaralis-kalpak-2/
+              - heading "Akbarali’s kalpak" [level=2] [ref=e164]
+              - generic [ref=e169]: 500.99$
+            - 'link "Add to cart: “Akbarali''s kalpak”" [ref=e172] [cursor=pointer]':
+              - /url: "?add-to-cart=628"
+              - text: Add to cart
+          - listitem [ref=e174]:
+            - link "Anything 21.99$" [ref=e175] [cursor=pointer]:
+              - /url: http://staging.shopping.beeyor.com/product/anything/
+              - heading "Anything" [level=2] [ref=e176]
+              - generic [ref=e181]: 21.99$
+            - 'link "Add to cart: “Anything”" [ref=e184] [cursor=pointer]':
+              - /url: "?add-to-cart=774"
+              - text: Add to cart
+          - listitem [ref=e186]:
+            - link "Placeholder API test 21.99$" [ref=e187] [cursor=pointer]:
+              - /url: http://staging.shopping.beeyor.com/product/api-test/
+              - img "Placeholder" [ref=e188]
+              - heading "API test" [level=2] [ref=e189]
+              - generic [ref=e194]: 21.99$
+            - 'link "Add to cart: “API test”" [ref=e197] [cursor=pointer]':
+              - /url: "?add-to-cart=653"
+              - text: Add to cart
+          - listitem [ref=e199]:
+            - link "Placeholder API test 21.99$" [ref=e200] [cursor=pointer]:
+              - /url: http://staging.shopping.beeyor.com/product/api-test-2/
+              - img "Placeholder" [ref=e201]
+              - heading "API test" [level=2] [ref=e202]
+              - generic [ref=e207]: 21.99$
+            - 'link "Add to cart: “API test”" [ref=e210] [cursor=pointer]':
+              - /url: "?add-to-cart=879"
+              - text: Add to cart
+          - listitem [ref=e212]:
+            - link "Placeholder API test 21.99$" [ref=e213] [cursor=pointer]:
+              - /url: http://staging.shopping.beeyor.com/product/api-test-3/
+              - img "Placeholder" [ref=e214]
+              - heading "API test" [level=2] [ref=e215]
+              - generic [ref=e220]: 21.99$
+            - 'link "Add to cart: “API test”" [ref=e223] [cursor=pointer]':
+              - /url: "?add-to-cart=885"
+              - text: Add to cart
+          - listitem [ref=e225]:
+            - link "API TEST 21.99$" [ref=e226] [cursor=pointer]:
+              - /url: http://staging.shopping.beeyor.com/product/api-test-4/
+              - heading "API TEST" [level=2] [ref=e227]
+              - generic [ref=e232]: 21.99$
+            - 'link "Add to cart: “API TEST”" [ref=e235] [cursor=pointer]':
+              - /url: "?add-to-cart=888"
+              - text: Add to cart
+          - listitem [ref=e237]:
+            - link "Placeholder API test 21.99$" [ref=e238] [cursor=pointer]:
+              - /url: http://staging.shopping.beeyor.com/product/api-test-5/
+              - img "Placeholder" [ref=e239]
+              - heading "API test" [level=2] [ref=e240]
+              - generic [ref=e245]: 21.99$
+            - 'link "Add to cart: “API test”" [ref=e248] [cursor=pointer]':
+              - /url: "?add-to-cart=891"
+              - text: Add to cart
+          - listitem [ref=e250]:
+            - link "Placeholder API test 21.99$" [ref=e251] [cursor=pointer]:
+              - /url: http://staging.shopping.beeyor.com/product/api-test-6/
+              - img "Placeholder" [ref=e252]
+              - heading "API test" [level=2] [ref=e253]
+              - generic [ref=e258]: 21.99$
+            - 'link "Add to cart: “API test”" [ref=e261] [cursor=pointer]':
+              - /url: "?add-to-cart=903"
+              - text: Add to cart
+        - navigation "Product Pagination" [ref=e263]:
+          - list [ref=e264]:
+            - listitem [ref=e265]:
+              - generic "Page 1" [ref=e266]: "1"
+            - listitem [ref=e267]:
+              - link "Page 2" [ref=e268] [cursor=pointer]:
+                - /url: http://staging.shopping.beeyor.com/shop/page/2/
+                - text: "2"
+            - listitem [ref=e269]:
+              - link "Page 3" [ref=e270] [cursor=pointer]:
+                - /url: http://staging.shopping.beeyor.com/shop/page/3/
+                - text: "3"
+            - listitem [ref=e271]:
+              - link "Page 4" [ref=e272] [cursor=pointer]:
+                - /url: http://staging.shopping.beeyor.com/shop/page/4/
+                - text: "4"
+            - listitem [ref=e273]:
+              - generic [ref=e274]: …
+            - listitem [ref=e275]:
+              - link "Page 11" [ref=e276] [cursor=pointer]:
+                - /url: http://staging.shopping.beeyor.com/shop/page/11/
+                - text: "11"
+            - listitem [ref=e277]:
+              - link "Page 12" [ref=e278] [cursor=pointer]:
+                - /url: http://staging.shopping.beeyor.com/shop/page/12/
+                - text: "12"
+            - listitem [ref=e279]:
+              - link "Page 13" [ref=e280] [cursor=pointer]:
+                - /url: http://staging.shopping.beeyor.com/shop/page/13/
+                - text: "13"
+            - listitem [ref=e281]:
+              - link "→" [ref=e282] [cursor=pointer]:
+                - /url: http://staging.shopping.beeyor.com/shop/page/2/
+    - contentinfo [ref=e283]:
+      - generic [ref=e285]:
+        - generic [ref=e287]:
+          - heading "Staging shopping" [level=1] [ref=e289]:
+            - link "Staging shopping" [ref=e290] [cursor=pointer]:
+              - /url: http://staging.shopping.beeyor.com
+          - paragraph [ref=e291]: Lorem ipsum dolor sit amet consecte tur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua tepo the.
+          - list [ref=e292]:
+            - listitem [ref=e293]:
+              - link "Facebook" [ref=e294] [cursor=pointer]:
+                - /url: "#"
+                - img [ref=e295]
+                - generic [ref=e297]: Facebook
+            - listitem [ref=e298]:
+              - link "Twitter" [ref=e299] [cursor=pointer]:
+                - /url: "#"
+                - img [ref=e300]
+                - generic [ref=e302]: Twitter
+            - listitem [ref=e303]:
+              - link "LinkedIn" [ref=e304] [cursor=pointer]:
+                - /url: "#"
+                - img [ref=e305]
+                - generic [ref=e307]: LinkedIn
+            - listitem [ref=e308]:
+              - link "Instagram" [ref=e309] [cursor=pointer]:
+                - /url: "#"
+                - img [ref=e310]
+                - generic [ref=e312]: Instagram
+        - generic [ref=e313]:
+          - heading "Information" [level=3] [ref=e315]
+          - list [ref=e316]:
+            - listitem [ref=e317]:
+              - link "About Us" [ref=e318] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e319]:
+              - link "Contact Us" [ref=e320] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e321]:
+              - link "Terms & Conditions" [ref=e322] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e323]:
+              - link "Returns & Exchanges" [ref=e324] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e325]:
+              - link "Shipping & Delivery" [ref=e326] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e327]:
+              - link "Privacy Policy" [ref=e328] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=e329]:
+          - heading "Information" [level=3] [ref=e331]
+          - list [ref=e332]:
+            - listitem [ref=e333]:
+              - link "About Us" [ref=e334] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e335]:
+              - link "Contact Us" [ref=e336] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e337]:
+              - link "Terms & Conditions" [ref=e338] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e339]:
+              - link "Returns & Exchanges" [ref=e340] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e341]:
+              - link "Shipping & Delivery" [ref=e342] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e343]:
+              - link "Privacy Policy" [ref=e344] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=e345]:
+          - heading "Quick Links" [level=3] [ref=e347]
+          - list [ref=e349]:
+            - listitem [ref=e350]:
+              - link "Store Location" [ref=e351] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e352]:
+              - link "My Account" [ref=e353] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e354]:
+              - link "Accessories" [ref=e355] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e356]:
+              - link "Orders Tracking" [ref=e357] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e358]:
+              - link "FAQs" [ref=e359] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e360]:
+              - link "Contact" [ref=e361] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=e362]:
+          - heading "Contact Us" [level=3] [ref=e364]
+          - generic [ref=e365]:
+            - paragraph [ref=e366]: example@mail.com
+            - paragraph [ref=e367]: +1 234 567 890
+            - paragraph [ref=e368]: 457 Morningview Lane, NY
+          - figure [ref=e369]
+      - paragraph [ref=e372]:
+        - text: Proudly powered by
+        - link "Firefly Themes" [ref=e373] [cursor=pointer]:
+          - /url: https://fireflythemes.com/
+        - text: and
+        - link "WordPress" [ref=e374] [cursor=pointer]:
+          - /url: https://wordpress.org
+  - status [ref=e375]
