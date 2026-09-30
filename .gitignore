@@ -1,0 +1,20 @@
+# Local environment (never commit secrets)
+.env
+.env.local
+.env.*.local
+
+# Dependencies
+node_modules/
+
+# Playwright output
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Auth state (if used)
+.auth/
+
+# OS / editor
+.DS_Store
+*.log
