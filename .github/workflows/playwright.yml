@@ -11,7 +11,7 @@ permissions:
 jobs:
   lint:
     name: Lint & typecheck
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -24,7 +24,7 @@ jobs:
 
   e2e:
     name: E2E (${{ matrix.browser }})
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: lint
     strategy:
       fail-fast: false
@@ -59,7 +59,7 @@ jobs:
 
   cucumber:
     name: BDD smoke (Cucumber)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: lint
     steps:
       - uses: actions/checkout@v4
