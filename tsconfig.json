@@ -21,7 +21,10 @@
     "pages/**/*.ts",
     "fixtures/**/*.ts",
     "utils/**/*.ts",
-    "playwright.config.ts"
+    "playwright.config.ts",
+    "config/**/*.ts",
+    "cucumber/**/*.ts",
+    "steps/**/*.ts"
   ],
   "exclude": ["node_modules", "dist", "playwright-report"]
 }

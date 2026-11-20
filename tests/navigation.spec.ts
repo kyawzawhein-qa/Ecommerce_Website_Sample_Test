@@ -5,7 +5,7 @@ import * as searchData from '../test-data/search-data.json';
  * Search Functionality Test Suite
  * Tests for the site-wide search feature
  */
-test.describe('Search Functionality', () => {
+test.describe('Search Functionality', { tag: '@regression' }, () => {
   test.beforeEach(async ({ homePage }) => {
     await homePage.goto();
   });
@@ -20,38 +20,12 @@ test.describe('Search Functionality', () => {
     expect(searchButtonVisible).toBe(true);
   });
 
-  test('should search for valid product term', async ({ homePage, shopPage }) => {
-    // Arrange
-    const searchTerm = 'ab';
-
-    // Act
-    await homePage.searchForProduct(searchTerm);
-
-    // Assert
-    await expect(homePage.page).toHaveURL(/s=|search/);
-  });
-
-  test('should search for partial product term', async ({ homePage }) => {
-    // Arrange
-    const searchTerm = 'shoe';
-
-    // Act
-    await homePage.searchForProduct(searchTerm);
-
-    // Assert
-    await expect(homePage.page).toHaveURL(/s=|search/);
-  });
-
-  test('should handle search with non-existent product', async ({ homePage }) => {
-    // Arrange
-    const searchTerm = 'xyznonexistent123';
-
-    // Act
-    await homePage.searchForProduct(searchTerm);
-
-    // Assert
-    await expect(homePage.page).toHaveURL(/s=|search/);
-  });
+  for (const scenario of searchData.searchScenarios.filter((s) => s.searchTerm)) {
+    test(`search — ${scenario.description}`, { tag: scenario.expectedResult === 'success' ? '@smoke' : '@regression' }, async ({ homePage }) => {
+      await homePage.searchForProduct(scenario.searchTerm);
+      await expect(homePage.page).toHaveURL(/s=|search/);
+    });
+  }
 
   test('should display search results page after search', async ({ homePage }) => {
     // Arrange
@@ -70,8 +44,8 @@ test.describe('Search Functionality', () => {
  * Navigation Test Suite
  * Tests for site navigation across all pages
  */
-test.describe('Navigation', () => {
-  test('should navigate from home to shop and back', async ({ homePage, shopPage }) => {
+test.describe('Navigation', { tag: '@regression' }, () => {
+  test('should navigate from home to shop and back', { tag: '@smoke' }, async ({ homePage, shopPage }) => {
     // Arrange
     await homePage.goto();
 
@@ -207,7 +181,7 @@ test.describe('Navigation', () => {
     await expect(productPage.page).toHaveURL(/product-category|shop/);
   });
 
-  test('should navigate from home to product via See All', async ({ homePage, shopPage }) => {
+  test('should navigate from home to product via See All', async ({ homePage }) => {
     // Arrange
     await homePage.goto();
 
@@ -218,7 +192,7 @@ test.describe('Navigation', () => {
     await expect(homePage.page).toHaveURL(/shop/);
   });
 
-  test('should navigate from cart product recommendation to product page', async ({ cartPage, productPage }) => {
+  test('should navigate from cart product recommendation to product page', async ({ cartPage }) => {
     // Arrange
     await cartPage.goto();
     const productsCount = await cartPage.getNewInStoreProductsCount();

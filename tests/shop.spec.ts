@@ -5,12 +5,12 @@ import * as shopData from '../test-data/shop-data.json';
  * Shop Page Test Suite
  * Tests for the Beeyor Shopping shop/product listing page
  */
-test.describe('Shop Page', () => {
+test.describe('Shop Page', { tag: '@regression' }, () => {
   test.beforeEach(async ({ shopPage }) => {
     await shopPage.goto();
   });
 
-  test('should load shop page with products', async ({ shopPage }) => {
+  test('should load shop page with products', { tag: '@smoke' }, async ({ shopPage }) => {
     // Arrange & Act
     const isLoaded = await shopPage.isShopPageLoaded();
 
@@ -98,8 +98,6 @@ test.describe('Shop Page', () => {
 
   test('should navigate to product detail page when product is clicked', async ({ shopPage, productPage }) => {
     // Arrange
-    const firstProductTitle = await shopPage.getProductTitle(0);
-
     // Act
     await shopPage.clickProduct(0);
 

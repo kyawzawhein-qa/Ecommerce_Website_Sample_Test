@@ -33,8 +33,8 @@ export class CartPage extends BasePage {
     this.cartItemPrices = page.locator('.product-price, td.product-price, .product-subtotal, td.product-subtotal');
     this.cartItemQuantities = page.locator('.product-quantity, td.product-quantity input.qty');
     this.cartItemRemoveButtons = page.locator('.product-remove a.remove, td.product-remove a.remove');
-    this.cartSubtotal = page.locator('.cart-subtotal td, .cart-subtotal .amount');
-    this.cartTotal = page.locator('.order-total td, .cart_totals .order-total .amount');
+    this.cartSubtotal = page.locator('.cart_totals .cart-subtotal td').last();
+    this.cartTotal = page.locator('.cart_totals .order-total .amount, .cart_totals .order-total td').last();
     this.updateCartButton = page.getByRole('button', { name: /update cart/i }).or(
       page.locator('button[name="update_cart"], input[name="update_cart"]')
     );
@@ -164,6 +164,6 @@ export class CartPage extends BasePage {
    * Click first new in store product
    */
   async clickFirstNewInStoreProduct(): Promise<void> {
-    await this.safeClick(this.newInStoreProducts.first());
+    await this.safeClick(this.newInStoreProducts.first().getByRole('link').first());
   }
 }

@@ -1,16 +1,14 @@
 import { test, expect } from '../fixtures/page-fixtures';
-import * as searchData from '../test-data/search-data.json';
-
 /**
  * Home Page Test Suite
  * Tests for the Beeyor Shopping home page functionality
  */
-test.describe('Home Page', () => {
+test.describe('Home Page', { tag: '@regression' }, () => {
   test.beforeEach(async ({ homePage }) => {
     await homePage.goto();
   });
 
-  test('should load home page with all key sections', async ({ homePage }) => {
+  test('should load home page with all key sections', { tag: '@smoke' }, async ({ homePage }) => {
     // Arrange & Act - already navigated in beforeEach
     const isLoaded = await homePage.isHomePageLoaded();
 

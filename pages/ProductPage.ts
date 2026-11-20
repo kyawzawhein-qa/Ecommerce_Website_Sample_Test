@@ -42,9 +42,7 @@ export class ProductPage extends BasePage {
       page.locator('.single_add_to_cart_button, button[type="submit"].single_add_to_cart_button')
     );
     this.breadcrumbs = page.locator('.woocommerce-breadcrumb, nav[aria-label="Breadcrumb"]');
-    this.breadcrumbHome = page.locator('.woocommerce-breadcrumb a').first().or(
-      page.getByRole('link', { name: 'Home' }).first()
-    );
+    this.breadcrumbHome = page.locator('.woocommerce-breadcrumb').getByRole('link', { name: 'Home' });
     this.breadcrumbCategory = page.locator('.woocommerce-breadcrumb a').nth(1).or(
       page.locator('.woocommerce-breadcrumb').getByRole('link').nth(1)
     );
@@ -98,7 +96,8 @@ export class ProductPage extends BasePage {
    * Get quantity value
    */
   async getQuantity(): Promise<string> {
-    return this.getText(this.quantityInput);
+    await this.quantityInput.waitFor({ state: 'visible', timeout: 10000 });
+    return this.quantityInput.inputValue();
   }
 
   /**
