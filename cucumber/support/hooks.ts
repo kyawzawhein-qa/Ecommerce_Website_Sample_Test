@@ -1,14 +1,8 @@
 import { Before, After, BeforeAll } from '@cucumber/cucumber';
 import { PlaywrightWorld, ensureFixtureServer } from './world';
-import { spawn, ChildProcess } from 'child_process';
-
-let ciServer: ChildProcess | undefined;
 
 BeforeAll(async () => {
-  if (process.env.CI) {
-    ciServer = spawn('node', ['fixture-storefront/server.js'], { stdio: 'ignore' });
-    await new Promise((resolve) => setTimeout(resolve, 800));
-  } else {
+  if (!process.env.CI) {
     await ensureFixtureServer();
   }
 });

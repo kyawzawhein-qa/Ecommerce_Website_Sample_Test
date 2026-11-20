@@ -15,7 +15,7 @@
     "test:regression": "playwright test --grep @regression",
     "test:api": "playwright test --grep @api",
     "test:report": "playwright show-report",
-    "test:cucumber": "cucumber-js --config cucumber.config.cjs",
+    "test:cucumber": "cucumber-js --config cucumber.config.cjs --force-exit",
     "fixture:serve": "node fixture-storefront/server.js",
     "typecheck": "tsc --noEmit",
     "lint": "eslint ."

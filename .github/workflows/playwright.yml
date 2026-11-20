@@ -69,6 +69,15 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium
+      - name: Start fixture storefront
+        run: |
+          node fixture-storefront/server.js &
+          for i in $(seq 1 30); do
+            curl -fsS http://127.0.0.1:3000/api/health >/dev/null && exit 0
+            sleep 1
+          done
+          echo "Fixture server failed to start" >&2
+          exit 1
       - run: npm run test:cucumber
         env:
           CI: true
