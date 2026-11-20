@@ -4,12 +4,12 @@ import { test, expect } from '../fixtures/page-fixtures';
  * Cart Page Test Suite
  * Tests for the shopping cart functionality
  */
-test.describe('Cart Page', () => {
+test.describe('Cart Page', { tag: '@regression' }, () => {
   test.beforeEach(async ({ cartPage }) => {
     await cartPage.goto();
   });
 
-  test('should load cart page', async ({ cartPage }) => {
+  test('should load cart page', { tag: '@smoke' }, async ({ cartPage }) => {
     // Arrange & Act
     const isLoaded = await cartPage.isCartPageLoaded();
 
@@ -36,7 +36,7 @@ test.describe('Cart Page', () => {
     expect(productsCount).toBeGreaterThan(0);
   });
 
-  test('should navigate to product from new in store section', async ({ cartPage, productPage }) => {
+  test('should navigate to product from new in store section', async ({ cartPage }) => {
     // Arrange
     const productsCount = await cartPage.getNewInStoreProductsCount();
     test.skip(productsCount === 0, 'No products available');
@@ -65,7 +65,7 @@ test.describe('Cart Page', () => {
  * Cart with Items Test Suite
  * Tests that require adding items to cart first
  */
-test.describe('Cart with Items', () => {
+test.describe('Cart with Items', { tag: '@regression' }, () => {
   test.beforeEach(async ({ shopPage, cartPage }) => {
     // Add a product to cart first
     await shopPage.goto();

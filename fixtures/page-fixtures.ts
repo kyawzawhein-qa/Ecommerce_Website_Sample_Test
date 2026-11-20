@@ -1,15 +1,12 @@
-import { test as base } from '@playwright/test';
+import { test as base, APIRequestContext } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 import { HomePage } from '../pages/HomePage';
 import { ShopPage } from '../pages/ShopPage';
 import { ProductPage } from '../pages/ProductPage';
 import { CartPage } from '../pages/CartPage';
 import { CheckoutPage } from '../pages/CheckoutPage';
+import { config } from '../config/env';
 
-/**
- * Extended test fixture providing easy access to all Page Objects
- * Usage: import { test } from '../fixtures/page-fixtures';
- */
 interface PageFixtures {
   loginPage: LoginPage;
   homePage: HomePage;
@@ -17,32 +14,34 @@ interface PageFixtures {
   productPage: ProductPage;
   cartPage: CartPage;
   checkoutPage: CheckoutPage;
+  api: APIRequestContext;
 }
 
 export const test = base.extend<PageFixtures>({
+  api: async ({ playwright }, use) => {
+    const api = await playwright.request.newContext({
+      baseURL: config.baseURL,
+    });
+    await use(api);
+    await api.dispose();
+  },
   loginPage: async ({ page }, use) => {
-    const loginPage = new LoginPage(page);
-    await use(loginPage);
+    await use(new LoginPage(page));
   },
   homePage: async ({ page }, use) => {
-    const homePage = new HomePage(page);
-    await use(homePage);
+    await use(new HomePage(page));
   },
   shopPage: async ({ page }, use) => {
-    const shopPage = new ShopPage(page);
-    await use(shopPage);
+    await use(new ShopPage(page));
   },
   productPage: async ({ page }, use) => {
-    const productPage = new ProductPage(page);
-    await use(productPage);
+    await use(new ProductPage(page));
   },
   cartPage: async ({ page }, use) => {
-    const cartPage = new CartPage(page);
-    await use(cartPage);
+    await use(new CartPage(page));
   },
   checkoutPage: async ({ page }, use) => {
-    const checkoutPage = new CheckoutPage(page);
-    await use(checkoutPage);
+    await use(new CheckoutPage(page));
   },
 });
 

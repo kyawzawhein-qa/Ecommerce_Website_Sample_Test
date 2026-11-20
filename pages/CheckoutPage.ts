@@ -69,9 +69,9 @@ export class CheckoutPage extends BasePage {
     this.orderReviewTable = page.locator('#order_review, .order-review, .woocommerce-checkout-review-order-table');
     this.orderProductNames = page.locator('.order-review .product-name, .woocommerce-checkout-review-order-table .product-name');
     this.orderProductPrices = page.locator('.order-review .product-total, .woocommerce-checkout-review-order-table .product-total');
-    this.orderSubtotal = page.locator('.cart-subtotal td, .order-review .cart-subtotal');
-    this.orderShipping = page.locator('.shipping td, .order-review .shipping');
-    this.orderTotal = page.locator('.order-total td, .order-review .order-total');
+    this.orderSubtotal = page.locator('#order_review .cart-subtotal td').last();
+    this.orderShipping = page.locator('#order_review .shipping td').last();
+    this.orderTotal = page.locator('#order_review .order-total td').last();
     this.paymentMethods = page.locator('.wc_payment_methods, .payment_methods');
     this.placeOrderButton = page.getByRole('button', { name: /place order/i }).or(
       page.locator('#place_order, button[name="woocommerce_checkout_place_order"]')

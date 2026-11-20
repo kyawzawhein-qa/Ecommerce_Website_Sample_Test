@@ -4,14 +4,14 @@ import { test, expect } from '../fixtures/page-fixtures';
  * Product Detail Page Test Suite
  * Tests for individual product pages
  */
-test.describe('Product Detail Page', () => {
+test.describe('Product Detail Page', { tag: '@regression' }, () => {
   test.beforeEach(async ({ shopPage, productPage }) => {
     await shopPage.goto();
     await shopPage.clickProduct(0);
     await productPage.waitForPageLoad();
   });
 
-  test('should load product detail page with all elements', async ({ productPage }) => {
+  test('should load product detail page with all elements', { tag: '@smoke' }, async ({ productPage }) => {
     // Arrange & Act
     const isLoaded = await productPage.isProductPageLoaded();
 
@@ -91,14 +91,13 @@ test.describe('Product Detail Page', () => {
     expect(quantity).toBe('5');
   });
 
-  test('should add product to cart', async ({ productPage, cartPage }) => {
+  test('should add product to cart', async ({ productPage }) => {
     // Arrange & Act
     await productPage.addToCart();
     await productPage.waitForPageLoad();
 
-    // Assert - verify cart count updated or success message shown
-    const url = productPage.page.url();
-    expect(url).toContain('product/');
+    // Assert — fixture storefront redirects to cart after add
+    await expect(productPage.page).toHaveURL(/cart/);
   });
 
   test('should add product with specific quantity to cart', async ({ productPage }) => {
@@ -107,8 +106,7 @@ test.describe('Product Detail Page', () => {
     await productPage.waitForPageLoad();
 
     // Assert
-    const url = productPage.page.url();
-    expect(url).toContain('product/');
+    await expect(productPage.page).toHaveURL(/cart/);
   });
 
   test('should display related products section', async ({ productPage }) => {

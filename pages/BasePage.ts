@@ -143,7 +143,8 @@ export class BasePage {
    * @param timeout - Maximum wait time in milliseconds (default: 30000)
    */
   async waitForPageLoad(timeout: number = 30000): Promise<void> {
-    await this.page.waitForLoadState('networkidle', { timeout });
+    await this.page.waitForLoadState('domcontentloaded', { timeout });
+    await this.page.waitForLoadState('load', { timeout }).catch(() => undefined);
   }
 
   /**

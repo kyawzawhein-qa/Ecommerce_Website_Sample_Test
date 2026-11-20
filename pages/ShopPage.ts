@@ -103,7 +103,7 @@ export class ShopPage extends BasePage {
    * @param index - Product index (0-based)
    */
   async clickProduct(index: number = 0): Promise<void> {
-    await this.safeClick(this.productCards.nth(index));
+    await this.safeClick(this.productTitles.nth(index));
   }
 
   /**

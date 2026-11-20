@@ -1,15 +1,16 @@
 import { test, expect } from '../fixtures/page-fixtures';
+import * as checkoutData from '../test-data/checkout-data.json';
 
 /**
  * Checkout Page Test Suite
  * Tests for the checkout functionality
  */
-test.describe('Checkout Page', () => {
+test.describe('Checkout Page', { tag: '@regression' }, () => {
   test.beforeEach(async ({ checkoutPage }) => {
     await checkoutPage.goto();
   });
 
-  test('should load checkout page', async ({ checkoutPage }) => {
+  test('should load checkout page', { tag: '@smoke' }, async ({ checkoutPage }) => {
     // Arrange & Act
     const isLoaded = await checkoutPage.isCheckoutPageLoaded();
 
@@ -47,7 +48,7 @@ test.describe('Checkout Page', () => {
  * Checkout with Items Test Suite
  * Tests checkout flow with products in cart
  */
-test.describe('Checkout with Items', () => {
+test.describe('Checkout with Items', { tag: '@regression' }, () => {
   test.beforeEach(async ({ shopPage, checkoutPage }) => {
     // Add a product to cart and navigate to checkout
     await shopPage.goto();
@@ -80,30 +81,19 @@ test.describe('Checkout with Items', () => {
     expect(orderSubtotal.length).toBeGreaterThan(0);
   });
 
-  test('should fill billing information successfully', async ({ checkoutPage }) => {
-    // Arrange
-    const billingData = {
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'john.doe@example.com',
-      phone: '+1234567890',
-      address1: '123 Test Street',
-      city: 'Test City',
-      postcode: '12345',
-    };
+  for (const billingData of checkoutData.billingProfiles) {
+    test(`should fill billing — ${billingData.description}`, async ({ checkoutPage }) => {
+      await checkoutPage.fillBillingInformation(billingData);
 
-    // Act
-    await checkoutPage.fillBillingInformation(billingData);
+      const firstNameValue = await checkoutPage.page.inputValue('#billing_first_name');
+      const lastNameValue = await checkoutPage.page.inputValue('#billing_last_name');
+      const emailValue = await checkoutPage.page.inputValue('#billing_email');
 
-    // Assert
-    const firstNameValue = await checkoutPage.page.inputValue('#billing_first_name');
-    const lastNameValue = await checkoutPage.page.inputValue('#billing_last_name');
-    const emailValue = await checkoutPage.page.inputValue('#billing_email');
-
-    expect(firstNameValue).toBe(billingData.firstName);
-    expect(lastNameValue).toBe(billingData.lastName);
-    expect(emailValue).toBe(billingData.email);
-  });
+      expect(firstNameValue).toBe(billingData.firstName);
+      expect(lastNameValue).toBe(billingData.lastName);
+      expect(emailValue).toBe(billingData.email);
+    });
+  }
 
   test('should enable ship to different address', async ({ checkoutPage }) => {
     // Arrange & Act

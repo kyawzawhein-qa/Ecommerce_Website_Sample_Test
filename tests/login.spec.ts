@@ -1,19 +1,20 @@
 import { test, expect } from '../fixtures/page-fixtures';
 import * as loginData from '../test-data/login-data.json';
+import { config } from '../config/env';
 
 /**
  * Login Test Suite
  * Data-driven tests for the Beeyor Shopping login functionality
  * Uses Arrange-Act-Assert (AAA) pattern
  */
-test.describe('Login Functionality', () => {
+test.describe('Login Functionality', { tag: '@regression' }, () => {
   /**
    * Positive Test: Successful login with valid credentials
    */
-  test('should login successfully with valid credentials', async ({ loginPage }) => {
+  test('should login successfully with valid credentials', { tag: '@smoke' }, async ({ loginPage }) => {
     // Arrange
-    const validEmail = process.env.TEST_USERNAME || 'testuser@example.com';
-    const validPassword = process.env.TEST_PASSWORD || 'ValidP@ssw0rd!';
+    const validEmail = config.credentials.username;
+    const validPassword = config.credentials.password;
 
     // Act
     await loginPage.goto();

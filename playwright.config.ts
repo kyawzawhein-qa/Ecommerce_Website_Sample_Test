@@ -1,33 +1,35 @@
 import { defineConfig, devices } from '@playwright/test';
-import * as dotenv from 'dotenv';
-
-// Load environment variables from .env file
-dotenv.config();
+import { config } from './config/env';
 
 /**
- * Enterprise-grade Playwright configuration
- * - Cross-browser testing (Chromium, Firefox, WebKit)
- * - Parallel execution for faster test runs
- * - HTML reporting with trace-on-failure
- * - Environment-driven base URL
+ * Playwright configuration for the Beeyor Shopping sample storefront suite.
+ * Boots a local fixture server by default so CI and local runs stay deterministic.
  */
 export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 1,
-  workers: process.env.CI ? 1 : undefined,
+  retries: process.env.CI ? 2 : 0,
+  workers: process.env.CI ? 2 : undefined,
+  grep: process.env.TEST_TAG ? new RegExp(process.env.TEST_TAG) : undefined,
   reporter: [
     ['html', { outputFolder: 'playwright-report', open: 'never' }],
     ['list'],
+    ['json', { outputFile: 'playwright-report/results.json' }],
   ],
   use: {
-    baseURL: process.env.BASE_URL || 'http://staging.shopping.beeyor.com',
+    baseURL: config.baseURL,
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
-    actionTimeout: parseInt(process.env.ACTION_TIMEOUT || '15000', 10),
-    navigationTimeout: 30000,
+    actionTimeout: config.timeouts.action,
+    navigationTimeout: config.timeouts.navigation,
+  },
+  webServer: {
+    command: 'node fixture-storefront/server.js',
+    url: config.baseURL,
+    reuseExistingServer: !process.env.CI,
+    timeout: 120_000,
   },
   projects: [
     {

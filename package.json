@@ -1,26 +1,45 @@
 {
   "name": "beeyor-e2e-tests",
-  "version": "1.0.0",
-  "description": "Enterprise-grade E2E testing framework for Beeyor Shopping using Playwright and TypeScript",
-  "main": "index.js",
+  "version": "1.1.0",
+  "description": "Playwright + TypeScript E2E portfolio suite for a sample Beeyor Shopping storefront",
+  "private": true,
   "scripts": {
-    "test": "npx playwright test",
-    "test:headed": "npx playwright test --headed",
-    "test:ui": "npx playwright test --ui",
-    "test:debug": "npx playwright test --debug",
-    "test:chromium": "npx playwright test --project=chromium",
-    "test:firefox": "npx playwright test --project=firefox",
-    "test:webkit": "npx playwright test --project=webkit",
-    "test:report": "npx playwright show-report",
-    "test:login": "npx playwright test tests/login.spec.ts"
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "test:chromium": "playwright test --project=chromium",
+    "test:firefox": "playwright test --project=firefox",
+    "test:webkit": "playwright test --project=webkit",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:regression": "playwright test --grep @regression",
+    "test:api": "playwright test --grep @api",
+    "test:report": "playwright show-report",
+    "test:cucumber": "cucumber-js --config cucumber.config.cjs --force-exit",
+    "fixture:serve": "node fixture-storefront/server.js",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint ."
   },
-  "keywords": ["playwright", "e2e", "testing", "typescript", "beeyor"],
+  "keywords": [
+    "playwright",
+    "e2e",
+    "testing",
+    "typescript",
+    "page-object-model",
+    "beeyor"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@cucumber/cucumber": "^12.7.0",
+    "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.59.1",
     "@types/node": "^25.5.0",
     "dotenv": "^17.4.0",
-    "typescript": "^6.0.2"
+    "eslint": "^10.15.0",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2",
+    "typescript-eslint": "^8.73.0"
   }
 }

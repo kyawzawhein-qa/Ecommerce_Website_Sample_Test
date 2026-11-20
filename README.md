@@ -1,153 +1,111 @@
-# Ecommerce Sample — Playwright E2E Tests
+# Beeyor Shopping — Playwright E2E (Portfolio)
 
-Sample QA automation portfolio project: end-to-end tests for a generic ecommerce storefront, built with **Playwright** and **TypeScript** using the Page Object Model (POM).
+[![Playwright E2E](https://github.com/kyawzawhein-qa/Ecommerce_Website_Sample_Test/actions/workflows/playwright.yml/badge.svg)](https://github.com/kyawzawhein-qa/Ecommerce_Website_Sample_Test/actions/workflows/playwright.yml)
 
-The suite is written against a sample shopping site. Point tests at your own environment by setting `BASE_URL` in a local `.env` file (see setup below). This repository does not ship a hosted demo URL.
+Sample **Playwright + TypeScript** end-to-end suite for a fictional **Beeyor Shopping** storefront. The project demonstrates senior QA automation patterns: Page Object Model, typed fixtures, data-driven specs, HTTP API checks beside UI flows, accessibility scanning, Cucumber/Gherkin smoke coverage, and multi-browser CI.
+
+This repository is a **portfolio sample**. It does not represent any employer’s production code and makes no claims about adoption, usage, or metrics.
+
+## What it tests
+
+| Area | Coverage |
+|------|----------|
+| **Home** | Layout, navigation, hero, product rails, footer |
+| **Shop** | Sorting, pagination, product grid, add-to-cart |
+| **Product** | PDP details, quantity, breadcrumbs, related items |
+| **Cart & checkout** | Empty/filled cart, totals, billing/shipping forms |
+| **Login** | Positive + data-driven negative scenarios |
+| **Search & navigation** | Cross-page flows |
+| **API** | `/api/health`, `/api/products` vs UI catalog |
+| **Accessibility** | axe scans on home, shop, product, cart, checkout |
+
+## Tech stack
+
+- **Playwright Test** (TypeScript) — UI + `request` API context  
+- **Page Object Model** with shared `BasePage` helpers  
+- **Fixture storefront** (`fixture-storefront/`) — deterministic target for local runs and CI  
+- **@axe-core/playwright** — WCAG-oriented checks (color-contrast disabled for the minimal fixture theme)  
+- **Cucumber** — two BDD features (login + shop/cart)  
+- **GitHub Actions** — lint/typecheck, browser matrix, Cucumber job, HTML report + failure artifacts  
+
+Not used: Java, Cypress, Rest Assured.
 
 ## Project structure
 
 ```
-├── tests/                  # Test specifications
-│   ├── login.spec.ts       # Login functionality tests
-│   ├── home.spec.ts        # Home page tests
-│   ├── shop.spec.ts        # Shop/product listing tests
-│   ├── product.spec.ts     # Product detail page tests
-│   ├── cart.spec.ts        # Cart functionality tests
-│   ├── checkout.spec.ts    # Checkout flow tests
-│   └── navigation.spec.ts  # Cross-page navigation tests
-├── pages/                  # Page Object Models
-│   ├── BasePage.ts         # Base page with reusable methods
-│   ├── LoginPage.ts        # Login page object
-│   ├── HomePage.ts         # Home page object
-│   ├── ShopPage.ts         # Shop page object
-│   ├── ProductPage.ts      # Product detail page object
-│   ├── CartPage.ts         # Cart page object
-│   └── CheckoutPage.ts     # Checkout page object
-├── fixtures/               # Custom Playwright fixtures
-│   └── page-fixtures.ts    # Page Object fixtures
-├── test-data/              # JSON test data files
-│   ├── login-data.json     # Login test scenarios
-│   ├── search-data.json    # Search test scenarios
-│   └── shop-data.json      # Shop sorting/pagination data
-├── playwright.config.ts    # Playwright configuration
-├── tsconfig.json           # TypeScript configuration
-├── .env.example            # Environment variable template (copy to `.env`)
-└── package.json            # Project dependencies
+├── tests/                    # Playwright specs (tagged @smoke, @regression, @api)
+├── pages/                    # Page Objects
+├── fixtures/page-fixtures.ts # Typed fixtures (pages + API context)
+├── config/env.ts             # Centralized env config
+├── test-data/                # JSON data for login, shop, search, checkout
+├── fixture-storefront/       # Local HTTP fixture app + catalog JSON
+├── features/                 # Cucumber Gherkin features
+├── cucumber/                 # Cucumber hooks, world, step definitions
+├── playwright.config.ts
+└── .github/workflows/        # CI
 ```
 
-## Quick start
-
-### Prerequisites
-
-- Node.js 18+
-- npm or yarn
-
-### Installation
+## Setup
 
 ```bash
 npm install
-npx playwright install
+npx playwright install --with-deps   # all browsers + OS libs (CI does the same)
+cp .env.example .env                 # optional; defaults work out of the box
 ```
 
-### Configuration
-
-1. Copy the environment template and edit it for your storefront:
-
-   ```bash
-   cp .env.example .env
-   ```
-
-2. Set `BASE_URL` to the site you want to test.
-3. Optionally set `TEST_USERNAME` and `TEST_PASSWORD` for positive login scenarios. Do not commit real credentials.
+By default, `playwright.config.ts` starts `fixture-storefront/server.js` and uses `BASE_URL=http://127.0.0.1:3000`. Point `BASE_URL` at another environment only if you maintain compatible markup.
 
 ## Running tests
 
 ```bash
-# Run all tests (default: Chromium)
-npm test
-
-# Run tests in headed mode (see browser)
-npm run test:headed
-
-# Run tests on specific browser
-npm run test:chromium
-npm run test:firefox
-npm run test:webkit
-
-# Run a specific test file
-npm run test:login        # Login tests only
-npm run test:report       # View HTML report
-
-# Run tests in debug mode
-npm run test:debug
-
-# Run tests with UI mode (interactive)
-npm run test:ui
+npm test                 # all projects (chromium, firefox, webkit)
+npm run test:smoke       # @smoke
+npm run test:regression  # @regression
+npm run test:api         # @api
+npm run test:chromium    # single browser
+npm run test:cucumber    # Gherkin smoke (chromium-backed)
+npm run test:report      # open last HTML report
 ```
 
-## Test reports
+Debug / UI:
 
 ```bash
-npx playwright show-report
+npm run test:headed
+npm run test:ui
+npm run test:debug
 ```
 
-Reports are generated in `playwright-report/` (ignored by git).
+## Tags & npm scripts
 
-## Architecture
+| Tag | Purpose | Script |
+|-----|---------|--------|
+| `@smoke` | Fast critical paths | `npm run test:smoke` |
+| `@regression` | Full UI suite | `npm run test:regression` |
+| `@api` | HTTP + UI/API alignment | `npm run test:api` |
 
-### Page Object Model (POM)
+Tags are declared on `test.describe` / `test()` via Playwright’s native `tag` option.
 
-- **BasePage**: Reusable helpers (`safeClick`, `safeFill`, `MapsTo`, `getText`, `assertVisible`, etc.)
-- **LoginPage**: Login form and credential handling
-- **HomePage**: Hero banners, navigation, product listings, footer
-- **ShopPage**: Product grid, sorting, pagination
-- **ProductPage**: Product details, quantity, add to cart, breadcrumbs, related products
-- **CartPage**: Cart items, totals, coupon, checkout flow
-- **CheckoutPage**: Billing/shipping forms, order review, payment
+## Reports & artifacts
 
-### Test coverage
+- Local HTML report: `playwright-report/` → `npm run test:report`
+- Traces/screenshots/videos: on failure (see `playwright.config.ts`)
+- CI uploads per-browser HTML reports and failure artifacts
 
-| Page/Feature | Test File | Key tests |
-|-------------|-----------|-----------|
-| **Login** | `login.spec.ts` | Positive login, empty fields, invalid email, wrong password, UI elements |
-| **Home** | `home.spec.ts` | Page load, header, navigation, hero, features, products, promo banners, footer |
-| **Shop** | `shop.spec.ts` | Product listing, sort options, pagination, add to cart |
-| **Product** | `product.spec.ts` | Title, price, breadcrumbs, quantity, add to cart, related products |
-| **Cart** | `cart.spec.ts` | Empty cart, cart items, totals, remove items, checkout flow |
-| **Checkout** | `checkout.spec.ts` | Billing form, shipping form, order review, payment methods |
-| **Navigation** | `navigation.spec.ts` | Cross-page navigation, breadcrumbs, product recommendations |
-| **Search** | `navigation.spec.ts` | Valid search, partial search, no results |
+## CI
 
-### Data-driven testing
+Workflow: `.github/workflows/playwright.yml`
 
-Test data lives in `test-data/*.json` and is loaded in specs.
-
-### Fixtures
-
-`fixtures/page-fixtures.ts` exposes Page Objects to tests.
+1. **lint** — `npm run typecheck`, `npm run lint`  
+2. **e2e** — matrix `chromium` \| `firefox` \| `webkit`  
+3. **cucumber** — BDD smoke on Chromium with the fixture server  
 
 ## Writing new tests
 
-1. Add a Page Object in `pages/` extending `BasePage`
-2. Register a fixture in `fixtures/page-fixtures.ts`
-3. Add a spec under `tests/`
-4. Add JSON data under `test-data/` when useful
+1. Add or extend a Page Object under `pages/`.  
+2. Register it in `fixtures/page-fixtures.ts` if needed.  
+3. Add data under `test-data/` for data-driven cases.  
+4. Tag with `@smoke` / `@regression` / `@api` as appropriate.
 
-### Example (AAA)
+## License
 
-```typescript
-test('should do something', async ({ loginPage }) => {
-  // Arrange
-  await loginPage.goto();
-
-  // Act
-  await loginPage.login('user@example.com', 'password');
-
-  // Assert
-  await expect(loginPage.page).toHaveURL('/dashboard');
-});
-```
-
-## CI/CD
-
-The project supports parallel runs on common Node.js CI systems (for example GitHub Actions or Azure DevOps). Traces, screenshots, and videos are captured on failure when configured in `playwright.config.ts`.
+See [LICENSE](LICENSE).

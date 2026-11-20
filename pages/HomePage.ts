@@ -71,11 +71,12 @@ export class HomePage extends BasePage {
     this.cartItemCount = page.locator('.cart-count, .count');
     this.emptyCartMessage = page.getByText(/your cart is currently empty/i);
 
+    const primaryNav = page.getByRole('navigation', { name: 'Primary' });
     // Navigation
-    this.navCartLink = page.getByRole('link', { name: 'Cart', exact: true });
-    this.navCheckoutLink = page.getByRole('link', { name: 'Checkout', exact: true });
-    this.navMyAccountLink = page.getByRole('link', { name: 'My Account', exact: true });
-    this.navShopLink = page.getByRole('link', { name: 'Shop', exact: true });
+    this.navCartLink = primaryNav.getByRole('link', { name: 'Cart', exact: true });
+    this.navCheckoutLink = primaryNav.getByRole('link', { name: 'Checkout', exact: true });
+    this.navMyAccountLink = primaryNav.getByRole('link', { name: 'My Account', exact: true });
+    this.navShopLink = primaryNav.getByRole('link', { name: 'Shop', exact: true });
     this.searchBox = page.getByRole('searchbox', { name: /search/i }).or(
       page.locator('input[name="s"], input.search-field')
     );
@@ -108,9 +109,7 @@ export class HomePage extends BasePage {
     this.productCards = page.locator('.product, .product-card, li.product');
 
     // Promotional Banners
-    this.promotionalBanners = page.locator('.promo-banner, .banner-section').or(
-      page.getByText(/best deals|valentine/i)
-    );
+    this.promotionalBanners = page.locator('main .banner-section');
 
     // Footer
     this.footerLogo = page.locator('footer').getByRole('heading', { name: /staging shopping/i });
