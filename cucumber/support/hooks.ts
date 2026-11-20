@@ -14,7 +14,3 @@ Before(async function (this: PlaywrightWorld) {
 After(async function (this: PlaywrightWorld) {
   await this.cleanup();
 });
-
-process.on('exit', () => {
-  ciServer?.kill();
-});
